@@ -1,23 +1,17 @@
 <?php
-/**
- * Provides moon phase data as global variable for use in templates.
- *
- * @author  Kalyn Robinson <dev@shinkarpg.com>
- * @license http://unlicense.org/ Unlicense
- * @version 1.0.0
- */
 
 if (!defined("IN_MYBB")) {
     die("Direct initialization of this file is not allowed.");
 }
 
-require_once MYBB_ROOT . "inc/plugins/moon/hooks.php";
-
 function moon_info()
 {
     global $lang;
 
-    $lang->load("moon");
+    if (!$lang->moon) {
+        $lang->load("moon");
+    }
+
     return array(
         "name" => $lang->moon,
         "description" => $lang->moon_description,
